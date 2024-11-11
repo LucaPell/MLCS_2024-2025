@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[left = 20mm, right = 20mm]{geometry}
+\linespread{1.2}
+\usepackage{xcolor,eso-pic,soul}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\graphicspath{{./figures}}
+\definecolor{bluunipv}{HTML}{1E489F}
+\newcommand{\step}[1]{\underline{\textbf{\large{#1}}} }  
+\setulcolor{bluunipv}
+\setul{0.5ex}{0.3ex}
+\title{\textcolor{white}{\textbf{Machine Learning per il Calcolo Scientifico}\\ \small\textbf{Second laboratory exercises }}}
+\date{}
+
+% \AddToShipoutPictureBG{\color{bluunipv}%
+% \AtPageUpperLeft{\rule[-20mm]{\paperwidth}{30cm}}%
+% }
+
+\begin{document}
+    
+    \definecolor{rossounipv}{HTML}{B2264A}
+    \definecolor{bluunipv}{HTML}{1E489F}
+    %\pagecolor{bluunipv}
+    \AddToShipoutPicture*
+    {%
+      \AtPageUpperLeft
+        {%
+          \color{bluunipv}%
+          \raisebox{-.1\paperheight}{\rule{\paperwidth}{.5\paperheight}}%
+
+        }%
+      %\color{white}%
+     % \rule{\paperwidth}{.5\paperheight}%
+    }
+    \newgeometry{left = 20mm, right = 20mm, top = -6mm}
+    \maketitle
+    \begin{center}\step{General guide} \end{center}
+
+    For each laboratory, an incomplete Python notebook will be provided with exercises (steps) that must be completed in the given order (some of the exercises will be needed in future laboratories). In step zero, all the Python packages that are needed in order to complete the notebook are listed. This PDF includes the text for the exercises and the expected outcomes for each step. While following the notebook is recommended, you are also welcome to attempt the exercises without using it.
+
+
+    \begin{center}\step{Step Zero} \end{center}
+
+    Here are the required Python (\url{https://www.python.org/}) packages for this laboratory:
+
+    \begin{itemize}
+      \item PyTorch (\url{https://pytorch.org/})
+      \item Numpy (\url{https://numpy.org/})
+      \item Matplotlib (\url{https://matplotlib.org/})
+      \item[\textcolor{red}{\textbullet}] plotly (\url{https://plotly.com/})
+      \item[\textcolor{red}{\textbullet}] ipywidgets (\url{https://ipywidgets.readthedocs.io/en/stable/})
+    \end{itemize}
+
+
+    \begin{center}\step{First Step: Define the gradient}\end{center}
+
+    a. Using \href{https://pytorch.org/docs/stable/generated/torch.autograd.grad.html}{torch.autograd.grad} complete the function grad in lab2.py \textcolor{red}{(Will be used in other labs)} 
+    
+    b. Use the function grad to evaluate the gradient of the function $x^2+y^2$ (Example1.ipynb).
+
+    c. Confront the gradient obtained with torch.autograd with the exact gradient on 1000 points. 
+
+    \begin{center}\step{Second step: Implement the Gradient descent method}\end{center}
+    
+    \begin{center}\textit{Algorith:} \\ $x_{k+1} = x_{k} - \eta \nabla f(x_{k})$ \end{center}
+
+    a. Complete the function GD(lab2.py).
+
+    b. In each Example run the GD method.
+
+    c. Visualize the results using plot\_3D\_GD.
+
+    d. Explore different intial points, learning rate and number of epochs using the the code provided (interact).
+
+  \begin{center}\step{Third step: Implement the Momentum method}\end{center}
+    
+  \begin{center}\textit{Algorith:} 
+    \begin{equation*}
+      \begin{cases*}
+        v_{k+1} = \beta v_k  -\alpha \nabla f(x_k),\\
+        x_{k+1} = x_k + v_{k+1}.
+      \end{cases*}
+    \end{equation*}
+  \end{center}
+  \newpage
+  \restoregeometry
+    a. Complete the function momentum (lab2.py).
+
+    b. In each Example run the momentum method.
+
+    c. Visualize the results using plot\_3D\_GD.
+
+    d. Explore different intial points, learning rate and number of epochs using the the code provided (interact).
+
+\begin{center}\step{Fourth step: Implement the Neserov Momentum method}\end{center}
+  \begin{center}\textit{Algorith:} 
+    \begin{equation*}
+      \begin{cases*}
+        v_{k+1} = \beta v_k  -\alpha \nabla f(x_k + \beta v_k),\\
+        x_{k+1} = x_k + v_{k+1}.
+      \end{cases*}
+    \end{equation*}
+  \end{center} 
+
+    a. Complete the function Nesterov (lab2.py).
+
+    b. In each Example run the Nesterov method.
+
+    c. Visualize the results using plot\_3D\_GD.
+
+    d. Explore different intial points, learning rate and number of epochs using the the code provided (interact).
+
+\begin{center}\step{Fifth step: Confront the results obtained}\end{center}
+  
+      a. Using the function err, confront the convergence of the methods for each example.
+  
+\begin{center} \step{Sixth step: Scheduler of the learning rate}\end{center}
+
+    a. In Example4.ipynb using the interactive 2D plot change the number of epochs what do you observe?
+
+    b. Implement the Step learning rate function.
+
+    c. Use the step\_LR function with step = 5 and gamma = 0.55.
+
+    d. Confront the result using the err function with and without the scheduler.
+  \end{document}
