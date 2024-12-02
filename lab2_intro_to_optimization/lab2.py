@@ -9,7 +9,7 @@ def grad(x,y,fun):
     y.requires_grad_(True)
     u_x = torch.autograd.grad(fun(x,y).sum(),x,create_graph=True)[0]
     u_y = torch.autograd.grad(fun(x,y).sum(),y,create_graph=True)[0]
-    return torch.stack((u_x,u_y),dim = -1)
+    return torch.stack((u_x,u_y),dim = 1)
 
 
 #! qui per lo scheduler si puo migliorare il codice ma non so se ha senso sbattersi troppo per stacosa vedi tu
